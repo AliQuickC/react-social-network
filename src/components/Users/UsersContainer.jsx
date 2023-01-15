@@ -60,7 +60,7 @@ let mapStateToProps = (state) => {
 		isFetching: state.usersPage.isFetching,
 	}
 }
-// --- Connect container end -------------------------------------------------------------------
 
 export default connect(mapStateToProps,
 	{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersContainer);
+// --- Connect container end -------------------------------------------------------------------
