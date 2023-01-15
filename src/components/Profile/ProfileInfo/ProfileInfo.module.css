@@ -1,3 +1,17 @@
 .descriptionBlock {
 	padding: 10px;
 }
+
+.descriptionBlock p {
+	margin: 0;
+	width: 800px;
+	word-wrap: break-word;
+}
+
+.profileImage {
+	width: 200px;
+}
+
+.profileTitle {
+	margin: 0;
+}
