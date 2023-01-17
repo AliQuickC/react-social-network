@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
