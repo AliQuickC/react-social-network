@@ -6,6 +6,7 @@ import {
 	useLocation,
 	useNavigate,
 	useParams,
+	Navigate,
 } from "react-router-dom";
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
@@ -38,6 +39,8 @@ class ProfileContainer extends React.Component {
 	}
 
 	render() {
+		if (!this.props.isAuth) return <Navigate to='/login' />
+
 		return (
 			<Profile {...this.props} profile={this.props.profile} />
 		)
@@ -45,7 +48,8 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-	profile: state.profilePage.profile
+	profile: state.profilePage.profile,
+	isAuth: state.auth.isAuth,
 });
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);

@@ -1,3 +1,8 @@
+# Deploy: https://aliquickc.github.io/react-social-network/
+
+ReactJS - Socian network
+ReactJS - Социальная сеть
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
