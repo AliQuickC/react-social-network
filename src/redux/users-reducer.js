@@ -64,6 +64,7 @@ const usersReducer = (state = initialState, action) => {
 	}
 }
 
+// AC - action creaters
 export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
@@ -72,6 +73,7 @@ export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
+// thunc creaters
 export const getUsers = (currentPage, pageSize) => {
 	return (dispatch) => {
 		dispatch(setCurrentPage(currentPage));

@@ -14,7 +14,8 @@ const ProfileInfo = (props) => {
 				<img	className={s.profileImage}
 							src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}
 							alt="avatar" />
-				<ProfileStatus status={"Hello my friends"}/>
+				<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+
 				<h4 className={s.profileTitle}>Имя: {props.profile.fullName}</h4>
 				<p>Про меня: {props.profile.aboutMe}</p>
 				<p>Контакты: {JSON.stringify(props.profile.contacts)}</p>
