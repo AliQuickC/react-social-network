@@ -12,7 +12,6 @@ let initialState = {
 		{ id: 3, message: 'Blabla', likesCount: 3, avatarLink: avatar },
 		{ id: 4, message: 'Dada', likesCount: 1, avatarLink: avatar }
 	],
-	// newPostText: 'Hi',
 	profile: null,
 	status: '',
 };
