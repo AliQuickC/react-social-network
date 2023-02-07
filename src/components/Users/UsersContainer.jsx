@@ -8,7 +8,7 @@ import {
 	getUsers // thunk creater
 } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+// import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 // --- Class container begin -------------------------------------------------------------------
@@ -51,7 +51,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-	withAuthRedirect,
+	// withAuthRedirect,
 	connect(mapStateToProps,{follow, unfollow, setCurrentPage, getUsers })
 )(UsersContainer)
 // --- Connect container end -------------------------------------------------------------------
