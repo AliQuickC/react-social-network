@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const ProfileStatusWithHooks = (props) => {
 	//	[переменная state, ф-ция меняет значение state] = useState(инициализация значения state);
 	let [editMode, setEditMode] = useState(false);	// использовать локальный state с помощью hook - useState
 	let [status, setStatus] = useState(props.status);				// useState возвращает массив из 2х элементоа
+
+	useEffect(() => { // отслеживает global state, при изменении, меняет local state
+		setStatus(props.status);	// local state
+	}, [props.status]);					// global state
 
 	const activateEditMode = () => {
 		setEditMode(true); // local state
