@@ -7,12 +7,12 @@ class ProfileStatus extends React.Component {
 	}
 
 	activateEditMode = () => {
-		this.setState({
+		this.setState({ // local state
 			editMode: true
 		});
 	}
 	deactivateEditMode = () => {
-		this.setState({
+		this.setState({ // local state
 			editMode: false
 		});
 		this.props.updateStatus(this.state.status); // global state (modified with thunk)
