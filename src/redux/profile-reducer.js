@@ -1,16 +1,17 @@
 import avatar from '../assets/images/avatars/skrep1.jpg';
-import { profileAPI, usersAPI } from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
 	posts: [
-		{ id: 1, message: 'Hi, how are you?', likesCount: 2, avatarLink: avatar },
-		{ id: 2, message: 'It\'s my first post', likesCount: 4, avatarLink: avatar },
-		{ id: 3, message: 'Blabla', likesCount: 3, avatarLink: avatar },
-		{ id: 4, message: 'Dada', likesCount: 1, avatarLink: avatar }
+		{id: 1, message: 'Hi, how are you?', likesCount: 2, avatarLink: avatar},
+		{id: 2, message: 'It\'s my first post', likesCount: 4, avatarLink: avatar},
+		{id: 3, message: 'Blabla', likesCount: 3, avatarLink: avatar},
+		{id: 4, message: 'Dada', likesCount: 1, avatarLink: avatar}
 	],
 	profile: null,
 	status: '',
@@ -25,7 +26,7 @@ const profileReducer = (state = initialState, action) => {
 				likesCount: 0,
 				avatarLink: avatar,
 			};
-			let stateCopy = { ...state };
+			let stateCopy = {...state};
 			stateCopy.posts = [...state.posts];
 			stateCopy.posts.push(newPost);
 			stateCopy.newPostText = '';
@@ -35,20 +36,23 @@ const profileReducer = (state = initialState, action) => {
 			return {
 				...state,
 				status: action.status
-			}
+			};
 		}
 		case SET_USER_PROFILE: {
-			return { ...state, profile: action.profile }
+			return {...state, profile: action.profile};
 		}
+		case DELETE_POST:
+			return {...state, posts: state.posts.filter(p => p.id !== action.postId)};
 		default:
 			return state;
 	}
 }
 
 // AC - action creaters
-export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
-export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 // thunc creaters
 export const getUserProfile = (userId) => (dispatch) => {
