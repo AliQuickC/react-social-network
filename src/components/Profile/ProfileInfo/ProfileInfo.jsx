@@ -4,23 +4,23 @@ import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from "../../../assets/images/user.png";
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-	if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+	if (!profile) {
 		return <Preloader />
 	}
 	return (
 		<div>
 			<div className={s.descriptionBlock}>
 				<img	className={s.profileImage}
-							src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto}
+							src={profile.photos.large != null ? profile.photos.large : userPhoto}
 							alt="avatar" />
-				<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+				<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
 
-				<h4 className={s.profileTitle}>Имя: {props.profile.fullName}</h4>
-				<p>Про меня: {props.profile.aboutMe}</p>
-				<p>Контакты: {JSON.stringify(props.profile.contacts)}</p>
-				<p>Ищу работу: {props.profile.lookingForAJob ? 'Да' : 'Нет'}</p>
-				<p>Какую вакансию ищу: {props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : ''}</p>
+				<h4 className={s.profileTitle}>Имя: {profile.fullName}</h4>
+				<p>Про меня: {profile.aboutMe}</p>
+				<p>Контакты: {JSON.stringify(profile.contacts)}</p>
+				<p>Ищу работу: {profile.lookingForAJob ? 'Да' : 'Нет'}</p>
+				<p>Какую вакансию ищу: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription : ''}</p>
 			</div>
 		</div>
 	)

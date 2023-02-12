@@ -20,9 +20,11 @@ const appReducer = (state = initialState, action) => {
 	}
 }
 
-
+// AC - action creaters
 export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
+// AC - action creaters
 
+// thunc creaters
 export const initializeApp = () => (dispatch) => {
 	let promise = dispatch(getAuthUserData());
 	// debugger
@@ -33,5 +35,6 @@ export const initializeApp = () => (dispatch) => {
 			dispatch(initializedSuccess());
 		});
 }
+// thunc creaters
 
 export default appReducer;

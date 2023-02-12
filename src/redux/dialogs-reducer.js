@@ -32,6 +32,7 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 // AC - action creaters
-export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody })
+export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody });
+// AC - action creaters
 
 export default dialogsReducer;

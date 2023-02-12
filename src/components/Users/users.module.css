@@ -2,17 +2,3 @@
 	width: 100px;
 	height: 100px;
 }
-
-.pagination {
-	height: 180px;
-	overflow-y: auto;
-	margin-bottom: 20px;
-}
-
-.page {
-	cursor: pointer;
-}
-
-.selectedPage {
-	font-weight: bold;
-}
