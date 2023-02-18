@@ -7,7 +7,7 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...p
 	return <div>
 		<Paginator currentPage={currentPage}
 							 onPageChanged={onPageChanged}
-							 totalUsersCount={totalUsersCount}
+							 totalItemsCount={totalUsersCount}
 							 pageSize={pageSize}/>
 		<div>
 			{

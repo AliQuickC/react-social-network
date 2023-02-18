@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
 	users: [],
-	pageSize: 5,
+	pageSize: 10,
 	totalUsersCount: 20,
 	currentPage: 1,
 	isFetching: true,
@@ -70,12 +70,16 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 // AC - action creaters
 
 // thunc creaters
-export const requestUsers = (page, pageSize) => {
+export const requestUsers = (page, pageSize, totalUsersCount) => {
 	return async (dispatch) => {
 		dispatch(toggleIsFetching(true));
 		dispatch(setCurrentPage(page));
 
-		let data = await usersAPI.getUsers(page, pageSize);
+		// reverse user pages
+		let pagesCount = Math.ceil(totalUsersCount / pageSize);
+		let newPageNumber = pagesCount + 1 - page;
+
+		let data = await usersAPI.getUsers(newPageNumber, pageSize);
 		dispatch(toggleIsFetching(false));
 		dispatch(setUsers(data.items));
 		dispatch(setTotalUsersCount(data.totalCount));
