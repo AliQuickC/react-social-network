@@ -4,14 +4,15 @@
 
 .descriptionBlock p {
 	margin: 0;
+	padding: 10px;
 	width: 800px;
 	word-wrap: break-word;
 }
 
-.profileImage {
-	width: 200px;
-}
-
 .profileTitle {
 	margin: 0;
+}
+
+.mainPhoto {
+	max-width: 200px;
 }
