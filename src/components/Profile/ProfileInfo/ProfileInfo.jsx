@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from "../../../assets/images/user.png";
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileDataForm from './ProfileDataForm';
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+	let [editMode, setEditMode] = useState(false);
+
 	if (!profile) {
 		return <Preloader />
 	}
@@ -15,6 +18,14 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
 		}
 	}
 
+	const onSubmit = (formData) => {
+		saveProfile(formData).then(
+			() => {
+				setEditMode(false);
+			}
+		);
+	}
+
 	return (
 		<div>
 			<div className={s.descriptionBlock}>
@@ -22,17 +33,52 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
 							src={profile.photos.large != null ? profile.photos.large : userPhoto}
 							alt="avatar"
 				/>
+				<br/>
 				{ isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+
 				<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
 
-				<h4 className={s.profileTitle}>Имя: {profile.fullName}</h4>
-				<p>Про меня: {profile.aboutMe}</p>
-				<p>Контакты: {JSON.stringify(profile.contacts)}</p>
-				<p>Ищу работу: {profile.lookingForAJob ? 'Да' : 'Нет'}</p>
-				<p>Какую вакансию ищу: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription : ''}</p>
+				{ editMode
+					? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+					: <ProfileData goToEditMode={() => {setEditMode(true)} } profile={profile} isOwner={isOwner}/> }
+
 			</div>
 		</div>
 	)
+}
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+	return <div>
+		{isOwner && <div>
+			<button onClick={goToEditMode}>edit</button>
+		</div>}
+
+		<div>
+			<b>Full name</b>: {profile.fullName}
+		</div>
+
+		<div>
+			<b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
+		</div>
+			{profile.lookingForAJob &&
+				<div>
+					<b>My professional skills</b>: {profile.lookingForAJobDescription}
+				</div>}
+
+		<div>
+			<b>About me</b>: {profile.aboutMe}
+		</div>
+
+		<div>
+			<b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+			return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+		})}
+		</div>
+	</div>
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+	return <div className={s.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 
 export default ProfileInfo;
