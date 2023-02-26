@@ -6,6 +6,7 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import ProfileDataForm from './ProfileDataForm';
 
 const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+
 	let [editMode, setEditMode] = useState(false);
 
 	if (!profile) {

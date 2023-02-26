@@ -5,6 +5,7 @@ import {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile} from ".
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import withRouter from '../../hoc/withRouter';
+import Login from '../Login/Login';
 
 class ProfileContainer extends React.Component {
 
@@ -13,7 +14,8 @@ class ProfileContainer extends React.Component {
 		if (!userId) {
 			userId = this.props.authorizedUserId;
 			if (!userId) {
-				this.props.history.push("/login");
+				return;
+			// 	this.props.history.push("/login");
 			}
 		}
 		this.props.getUserProfile(userId);	// thunk
@@ -31,6 +33,10 @@ class ProfileContainer extends React.Component {
 	}
 
 	render() {
+		if (!this.props.authorizedUserId && !this.props.match.params.userId) {
+			return <Login/>;
+		}
+
 		return (<Profile  {...this.props}
 											profile={this.props.profile}
 											status={this.props.status}
